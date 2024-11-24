@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Project/Scenes/Village.unity
+    guid: 65abab2ea0cf3cf4ab0366d71cffda1d
+  - enabled: 1
+    path: Assets/_Project/Scenes/UI.unity
+    guid: d04888d51fe13c94bbb2b1150860b9ec
+  - enabled: 1
     path: Assets/_Project/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/_Project/Scenes/Dungeon.unity
+    guid: 68081564b86da6c42a88ea206e3b356c
+  - enabled: 1
+    path: Assets/_Project/Scenes/Character Garden.unity
+    guid: b58d2ea5d6539e140a5c5085f47eb79c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
