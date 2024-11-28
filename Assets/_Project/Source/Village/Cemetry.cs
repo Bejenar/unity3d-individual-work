@@ -13,9 +13,14 @@ namespace _Project.Source.Village
             G.cemetry = this;
         }
 
-        public GameObject GetAvailableGrave()
+        public int GetAvailableGrave()
         {
-            return graves[Random.Range(0, graves.Length)];
+            return Random.Range(0, graves.Length);
+        }
+
+        public GameObject GetTombObject(int tombPlace)
+        {
+            return graves[tombPlace];
         }
     }
 }

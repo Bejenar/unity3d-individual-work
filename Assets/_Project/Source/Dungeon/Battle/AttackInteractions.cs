@@ -10,6 +10,11 @@ using UnityEngine;
 
 namespace _Project.Source.Dungeon.Battle
 {
+    public interface IOnAttack
+    {
+        UniTask OnAttack(FieldData data, DungeonCharacter actor);
+    }
+    
     public class RegenerationInteraction : BaseInteraction, IOnAttack
     {
         public async UniTask OnAttack(FieldData data, DungeonCharacter actor)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace _Project.Data.Items
 {
+    [Serializable]
     public abstract class BaseWeaponEntity : CMSEntity
     {
         public BaseWeaponEntity()

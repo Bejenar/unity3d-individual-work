@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/Village.unity
+    path: Assets/_Project/Scenes/Old Village.unity
     guid: 65abab2ea0cf3cf4ab0366d71cffda1d
   - enabled: 1
     path: Assets/_Project/Scenes/UI.unity
     guid: d04888d51fe13c94bbb2b1150860b9ec
   - enabled: 1
-    path: Assets/_Project/Scenes/SampleScene.unity
+    path: Assets/_Project/Scenes/Village.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/_Project/Scenes/Dungeon.unity

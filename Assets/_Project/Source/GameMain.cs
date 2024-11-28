@@ -1,5 +1,4 @@
 using _Project.Data;
-using _Project.Source;
 using JamBootstrap.jam_bootstrap.Runtime;
 using UnityEngine;
 
@@ -15,9 +14,9 @@ public class ServicedMain : AbstractServicedMain
     {
         base.Awake();
 
-        G.state = new GameState();
+        G.state = SaveSystem.Load();
         G.fader = gameObject.AddComponent<ScreenFader>();
-        
+
         new ProgressionImporter().ImportLevelProgressionData();
     }
 }

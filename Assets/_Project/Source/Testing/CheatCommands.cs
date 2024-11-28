@@ -34,7 +34,7 @@ namespace _Project.Source.Testing
             {
                 ReloadScene();
             }
-            
+
             if (Input.GetKeyDown(KeyCode.F))
             {
                 G.dungeon.ProcessBattle().Forget();
@@ -42,20 +42,26 @@ namespace _Project.Source.Testing
 
             if (Input.GetKeyDown(KeyCode.S))
             {
-                if (SceneManager.GetActiveScene().name == "Village")
-                    G.main.SummonVillageHero();
+                try
+                {
+                    SaveSystem.Save(G.state);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e);
+                }
             }
-            
+
             if (Input.GetKeyDown(KeyCode.P))
             {
                 G.ui.ShowUnitPickerAsync();
             }
-            
+
             if (Input.GetKeyDown(KeyCode.M))
             {
                 G.ui.OpenQuestBoard();
             }
-            
+
             if (Input.GetKeyDown(KeyCode.N))
             {
                 G.main.StartNextDay();

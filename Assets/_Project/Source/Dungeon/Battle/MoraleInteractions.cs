@@ -6,6 +6,17 @@ using UnityEngine;
 
 namespace _Project.Source.Dungeon.Battle
 {
+    
+    public interface IOnMoraleHit
+    {
+        UniTask OnMoraleHit(DungeonHero character, int change);
+    }
+
+    public interface IAfterMoraleHit
+    {
+        UniTask AfterMoraleHit(FieldData data, DungeonHero character);
+    }
+    
     public class DefaultOnMoraleHit : BaseInteraction, IOnMoraleHit
     {
         public async UniTask OnMoraleHit(DungeonHero character, int change)

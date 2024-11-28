@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace _Project.Source.Village
 {
-    public class Alchemist : SelectableBehaviour
+    public class Alchemist : MonoBehaviour
     {
         private readonly int[] upgradeCosts = { 0, 10, 40, 100, 200 };
         private readonly string buildingName = "Alchemist's house";
@@ -22,14 +22,13 @@ namespace _Project.Source.Village
 
         public int tier = 0;
 
-        public override void Start()
+        public void Start()
         {
-            base.Start();
             tier = G.state.alchemistTier;
             rings =  CMS.GetAll<BaseRingEntity>();
         }
         
-        public override void OnPointerClick(PointerEventData eventData)
+        public void Show()
         {
             G.ui.upgradePopup.UpdateView(
                 upgradeName,

@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Data.Items
 {
+    [Serializable]
     public abstract class BaseRingEntity : CMSEntity
     {
         public BaseRingEntity()

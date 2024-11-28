@@ -1,5 +1,8 @@
+using System;
+
 namespace _Project.Data.Items
 {
+    [Serializable]
     public abstract class BaseArmorEntity : CMSEntity
     {
         public BaseArmorEntity()

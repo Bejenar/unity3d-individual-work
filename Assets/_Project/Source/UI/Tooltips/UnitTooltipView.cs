@@ -47,9 +47,14 @@ namespace _Project.Source.Village.UI
         {
             this.hero = hero;
             nameText.text = $"{hero.name}";
-            xpSlider.value = (float)(hero.Experience - hero.EXPERIENCE_LEVELS[hero.Level]) /
-                             (hero.EXPERIENCE_LEVELS[hero.Level + 1] - hero.EXPERIENCE_LEVELS[hero.Level]);
-            xpText.text = $"lvl {hero.Level + 1}";
+
+            if (xpSlider != null)
+            {
+                xpSlider.value = (float)(hero.Experience - hero.EXPERIENCE_LEVELS[hero.Level]) /
+                                 (hero.EXPERIENCE_LEVELS[hero.Level + 1] - hero.EXPERIENCE_LEVELS[hero.Level]);
+                xpText.text = $"lvl {hero.Level + 1}";
+            }
+
             healthText.text = $"Health: {hero.Health:F0}";
             healthRegenText.text = $"Health Regen: {hero.HealthRegeneration}";
             armorText.text = $"Armor: {hero.DamageReduction:F0}";

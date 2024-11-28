@@ -19,7 +19,7 @@ namespace _Project.Source.Village
             renderers = GetComponentsInChildren<Renderer>();
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public virtual void OnPointerEnter(PointerEventData eventData)
         {
             foreach (var meshRenderer in renderers)
             {

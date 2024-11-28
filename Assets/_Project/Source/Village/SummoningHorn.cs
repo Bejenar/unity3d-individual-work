@@ -5,12 +5,12 @@ using UnityEngine.EventSystems;
 
 namespace _Project.Source.Village
 {
-    public class SummoningHorn : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+    public class SummoningHorn : SelectableBehaviour
     {
         public bool canSummon => G.state.canSummonToday;
         public bool isFirstSummon => G.state.isFirstSummon;
 
-        public async void OnPointerClick(PointerEventData eventData)
+        public override async void OnPointerClick(PointerEventData eventData)
         {
             if (!canSummon) return;
             
@@ -19,7 +19,7 @@ namespace _Project.Source.Village
             
             G.state.canSummonToday = false;
 
-            await Camera.main.DOShakePosition(2, 0.05f, 10, 45f);
+            await Camera.main.DOShakePosition(2, 0.5f, 10, 45f);
 
 
             if (isFirstSummon)
@@ -32,18 +32,11 @@ namespace _Project.Source.Village
             G.main.SummonRecruits();
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public override void OnPointerEnter(PointerEventData eventData)
         {
             if (!canSummon) return;
 
-            transform.DOKill();
-            transform.DOScale(Vector3.one * 1.2f, 0.2f).SetEase(Ease.OutBack);
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            transform.DOKill();
-            transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.InBack);
+            base.OnPointerEnter(eventData);
         }
     }
 }

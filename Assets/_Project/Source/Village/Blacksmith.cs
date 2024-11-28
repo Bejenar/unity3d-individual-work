@@ -11,7 +11,7 @@ using Input = UnityEngine.Input;
 
 namespace _Project.Source.Village
 {
-    public class Blacksmith : SelectableBehaviour
+    public class Blacksmith : MonoBehaviour
     {
         private readonly int[] upgradeCosts = { 0, 10, 40, 100, 200 };
         private readonly string buildingName = "Smithy";
@@ -23,15 +23,14 @@ namespace _Project.Source.Village
 
         public int tier = 0;
 
-        public override void Start()
+        public void Start()
         {
-            base.Start();
             tier = G.state.smithyTier;
             Init(weapons);
             Init(armor);
         }
 
-        public override void OnPointerClick(PointerEventData eventData)
+        public void Show()
         {
             G.ui.upgradePopup.UpdateView(
                 upgradeName,

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Data.Items;
 using _Project.Source;
@@ -47,6 +48,7 @@ namespace _Project.Data.Traits
         }
     }
     
+    [Serializable]
     public class WitnessedDeathState : StateComponent
     {
         public List<DeceasedHero> deceasedHeroes = new();

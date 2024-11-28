@@ -37,14 +37,4 @@ namespace _Project.Source.Scenes
             await UniTask.WhenAll(tasks);
         }
     }
-
-    public interface IOnMoraleHit
-    {
-        UniTask OnMoraleHit(DungeonHero character, int change);
-    }
-
-    public interface IAfterMoraleHit
-    {
-        UniTask AfterMoraleHit(FieldData data, DungeonHero character);
-    }
 }
