@@ -24,6 +24,9 @@ public class Level1 : CMSEntity
     {
         Define<TagListChallenges>().all.Add(E.Id<Wave1>());
         Define<TagListChallenges>().all.Add(E.Id<Wave2>());
+        Define<TagListChallenges>().all.Add(E.Id<Wave3>());
+        Define<TagListChallenges>().all.Add(E.Id<Wave4>());
+        Define<TagListChallenges>().all.Add(E.Id<Wave1Boss>());
         Define<TagTier>().tier = 1;
         Define<TagLevelView>();
     }
@@ -49,3 +52,33 @@ public class Wave2 : CMSEntity
         Define<TagMobGroup>().mobGroup.Add(E.Id<Mushroom>());
     }
 }
+
+public class Wave3 : CMSEntity
+{
+    public Wave3()
+    {
+        Define<TagMobGroup>().mobGroup.Add(E.Id<Mushroom>());
+        Define<TagMobGroup>().mobGroup.Add(E.Id<Mushroom>());
+        Define<TagMobGroup>().mobGroup.Add(E.Id<Mushroom>());
+        Define<TagMobGroup>().mobGroup.Add(E.Id<Wolf>());
+    }
+}
+
+public class Wave4 : CMSEntity
+{
+    public Wave4()
+    {
+        Define<TagMobGroup>().mobGroup.Add(E.Id<Wolf>());
+        Define<TagMobGroup>().mobGroup.Add(E.Id<Wolf>());
+        Define<TagMobGroup>().mobGroup.Add(E.Id<Wolf>());
+    }
+}
+
+public class Wave1Boss : CMSEntity
+{
+    public Wave1Boss()
+    {
+        Define<TagMobGroup>().mobGroup.Add(E.Id<Wendigo>());
+    }
+}
+

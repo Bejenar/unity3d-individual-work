@@ -30,11 +30,11 @@ namespace _Project.Data.Items
         {
             if (hero != null)
             {
-                animator.SetBool(hasShieldHash, hero.model is Tank);
+                animator.SetBool(HasShieldHash, hero.model is Tank);
             }
             else
             {
-                animator.SetBool(hasShieldHash, hasShield);
+                animator.SetBool(HasShieldHash, hasShield);
             }
         }
 
@@ -81,7 +81,7 @@ namespace _Project.Data.Items
         public async void DrawWeapon()
         {
             Debug.Log("Draw weapon");
-            animator.SetBool(Weapon, true);
+            animator.SetBool(DungeonCharacter.DrawWeaponHash, true);
 
             if (hasShield) return;
 
@@ -93,7 +93,7 @@ namespace _Project.Data.Items
         public async void SheatheWeapon()
         {
             Debug.Log("Sheathe weapon");
-            animator.SetBool(Weapon, false);
+            animator.SetBool(DungeonCharacter.DrawWeaponHash, false);
 
             if (hasShield) return;
 

@@ -26,28 +26,34 @@ namespace _Project.Source.Behavior
 
         private async UniTask Purchase()
         {
-            Debug.Log("Purchasing upgrade " + equipment_type.Value);
             await UniTask.Delay(1000);
 
+            CMSEntity upgrade = null;
             switch (equipment_type.Value)
             {
                 case ItemType.WEAPON:
-                    PurchaseUpgrade(G.main.blacksmith.GetWeaponUpgrade(Agent.Value.hero), (h, e) => h.Weapon = e);
+                    upgrade = PurchaseUpgrade(G.main.blacksmith.GetWeaponUpgrade(Agent.Value.hero),
+                        (h, e) => h.Weapon = e);
                     break;
 
                 case ItemType.ARMOR:
-                    PurchaseUpgrade(G.main.blacksmith.GetArmorUpgrade(Agent.Value.hero), (h, e) => h.Armor = e);
+                    upgrade = PurchaseUpgrade(G.main.blacksmith.GetArmorUpgrade(Agent.Value.hero),
+                        (h, e) => h.Armor = e);
                     break;
 
                 case ItemType.RING:
-                    PurchaseUpgrade(G.main.alchemist.GetUpgradeCanAfford(Agent.Value.hero), (h, e) => h.Ring = e);
+                    upgrade = PurchaseUpgrade(G.main.alchemist.GetUpgradeCanAfford(Agent.Value.hero),
+                        (h, e) => h.Ring = e);
                     break;
             }
+
+            G.ui.Say(hero.head,
+                $"Purchased {upgrade.Get<TagItemName>().name} ({upgrade.Get<TagPrice>().price} gold)", 50);
 
             status = Status.Success;
         }
 
-        private void PurchaseUpgrade<T>(T upgrade, Action<Hero, T> setUpgrade) where T : CMSEntity
+        private CMSEntity PurchaseUpgrade<T>(T upgrade, Action<Hero, T> setUpgrade) where T : CMSEntity
         {
             var h = hero.hero;
             var price = upgrade.Get<TagPrice>().price;
@@ -55,6 +61,8 @@ namespace _Project.Source.Behavior
             G.state.gold += Mathf.CeilToInt(price * 0.1f);
             setUpgrade(h, upgrade);
             h.UpdateStats();
+
+            return upgrade;
         }
     }
 }

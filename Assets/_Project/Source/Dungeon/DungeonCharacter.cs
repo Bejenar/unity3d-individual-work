@@ -10,15 +10,15 @@ namespace _Project.Data.Items
     public abstract class DungeonCharacter : MonoBehaviour
     {
         public static readonly int MagicAttack = Animator.StringToHash("Magic Attack");
-        public static readonly int TankAttack = Animator.StringToHash("Tank Attack");
-        public static readonly int SwordAttack = Animator.StringToHash("Sword Attack");
+        // public static readonly int TankAttack = Animator.StringToHash("Tank Attack");
+        // public static readonly int SwordAttack = Animator.StringToHash("Sword Attack");
         public static readonly int Attack = Animator.StringToHash("Attack");
 
         public static readonly int Death = Animator.StringToHash("Death");
         public static readonly int Running = Animator.StringToHash("Running");
 
-        public static readonly int Weapon = Animator.StringToHash("DrawWeapon");
-        public static readonly int hasShieldHash = Animator.StringToHash("hasShield");
+        public static readonly int DrawWeaponHash = Animator.StringToHash("DrawWeapon");
+        public static readonly int HasShieldHash = Animator.StringToHash("hasShield");
 
         public Animator animator;
 
@@ -127,7 +127,8 @@ namespace _Project.Data.Items
         public virtual async UniTask Die()
         {
             UpdateUI();
-            await transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InOutBack);
+            animator.CrossFade(Death, 0.1f);
+            await UniTask.WaitForSeconds(1.5f);
             gameObject.SetActive(false);
         }
     }

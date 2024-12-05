@@ -51,6 +51,12 @@ public static class SaveSystem
     {
         PlayerPrefs.DeleteKey(SlotId);
     }
+    
+    [MenuItem("Tools/[Save] Copy save to clipboard")]
+    public static void CopyFile()
+    {
+        GUIUtility.systemCopyBuffer = PlayerPrefs.GetString(SlotId, "{}");
+    }
 
     private const string MenuName = "Tools/[Save] Load Existing Save";
     private const string SettingName = "CleanSave";

@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using _Project.Data;
 using _Project.Source.Village;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityUtils;
@@ -24,8 +20,11 @@ namespace _Project.Source.Scenes
         public GameObject randomPlaces;
         public Blacksmith blacksmith;
         public Alchemist alchemist;
-        public GameObject spa;
-        
+        public Spa spa;
+        public GameObject dungeonEntry;
+
+        public List<VillageHero> villageHeroes = new List<VillageHero>();
+
         private async void Start()
         {
             G.main = this;
@@ -40,8 +39,10 @@ namespace _Project.Source.Scenes
 
             foreach (var hero in G.state.heroes)
             {
-                SummonVillageHero(hero);
+                villageHeroes.Add(SummonVillageHero(hero));
             }
+
+            G.state.selectedHeroes.Clear();
         }
 
         private async UniTask OnDungeonExit()
@@ -49,7 +50,6 @@ namespace _Project.Source.Scenes
             G.ui.expeditionSummary.gameObject.SetActive(true);
             await UniTask.WaitWhile(() => G.ui.expeditionSummary.isActiveAndEnabled);
             G.ui.expeditionSummary.Show();
-            G.state.selectedHeroes.Clear();
         }
 
         public async void SummonInitialHeroes()
@@ -68,19 +68,24 @@ namespace _Project.Source.Scenes
         {
             var hero = HeroSummoning.CreateHero(model);
             var villageHero = Instantiate(villageHeroPrefab, villageHeroParent);
-            villageHero.transform.localPosition = Random.insideUnitSphere.With(y:0) * 0.1f;
+            villageHero.transform.localPosition = Random.insideUnitSphere.With(y: 0) * 0.1f;
             villageHero.Init(hero);
-            
+
             return villageHero;
         }
-        
+
         public VillageHero SummonVillageHero(Hero hero)
         {
-            // hero.WitnessDeath(hero); // TODO
+            Debug.Log(G.state.selectedHeroes.Contains(hero));
+            var position = G.state.selectedHeroes.Contains(hero) ? dungeonEntry.transform.position :
+                hero.LastVillagePosition == Vector2.zero ? villageHeroParent.position :
+                new Vector3(hero.LastVillagePosition.x, 0, hero.LastVillagePosition.y);
+
+
             var villageHero = Instantiate(villageHeroPrefab, villageHeroParent);
-            villageHero.transform.localPosition = Random.insideUnitSphere.With(y:0) * 0.1f;
+            villageHero.transform.position = position + Random.insideUnitSphere.With(y: 0) * 2.5f;
             villageHero.Init(hero);
-            
+
             return villageHero;
         }
 
@@ -89,10 +94,23 @@ namespace _Project.Source.Scenes
             G.state.selectedHeroes = party;
             G.state.waveIndex = 0;
 
+            SetLastVillagePosition();
+
             var m_EnterDungeon = GameResources.Materials.m_EnterDungeon;
             await m_EnterDungeon.DOFloat(1, "_Scale", 2f).SetEase(Ease.InOutQuad);
             SceneManager.LoadScene("Dungeon");
             m_EnterDungeon.DOFloat(0, "_Scale", 0f);
+        }
+
+        public void SetLastVillagePosition()
+        {
+            foreach (var vh in villageHeroes)
+            {
+                if (!G.state.selectedHeroes.Contains(vh.hero))
+                {
+                    vh.hero.LastVillagePosition = new Vector2(vh.transform.position.x, vh.transform.position.z);
+                }
+            }
         }
 
         public async void SummonRecruits()

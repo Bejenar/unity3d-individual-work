@@ -9,7 +9,7 @@ namespace _Project.Source.Dungeon.Battle
         [SerializeField]
         public float duration;
 
-        private VisualEffect visualEffect;
+        public VisualEffect visualEffect;
 
         private async void Start()
         {

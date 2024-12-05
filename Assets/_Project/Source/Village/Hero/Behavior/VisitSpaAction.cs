@@ -39,20 +39,25 @@ namespace _Project.Source.Behavior
 				hero.lock_in_place = false
 
              */
-            // Debug.Log("Visiting spa...");
+            Debug.Log("Visiting spa...");
+
+            
+            if (G.main.spa.ReserveSpaPoint(out var index))
+            {
+	            Debug.Log("Getting in spa...");
+	            G.main.spa.GetInSpa(hero, index);
+	            int wandering = Random.Range(6, 10);
+	            hero.hero.sanity = Mathf.Min(100, hero.hero.sanity + wandering);
+	            await UniTask.WaitForSeconds(wandering);
+	            
+	            G.main.spa.GetOutSpa(hero, index);
+            }
+            
             await UniTask.Delay(1000);
             
-            int wandering = Random.Range(6, 20);
-            hero.hero.sanity = Mathf.Min(100, hero.hero.sanity + wandering);
-            // Debug.Log("Sanity: " + hero.hero.sanity);
+            
             status = Status.Success;
         }
-
-        /**
-         * 	hero.set_in_water(false)
-			hero.visual.cancel_spa_wander()
-			hero.lock_in_place = false
-         */
         protected override void OnEnd()
         {
         }

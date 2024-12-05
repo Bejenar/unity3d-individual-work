@@ -10,6 +10,8 @@ namespace _Project.Source
 {
     public class VillageHero : SelectableBehaviour
     {
+        public Transform head;
+        
         public Hero hero;
         public BehaviorGraphAgent behaviorAgent;
         public Rigidbody rb;
@@ -32,9 +34,13 @@ namespace _Project.Source
             set => behaviorAgent.SetVariableValue("VillagerState", value);
         }
 
+        public Transform InitParent { get; protected set; }
+
         public override void Start()
         {
             base.Start();
+            
+            InitParent = transform.parent;
             
             animator.applyRootMotion = true;
             Agent.updatePosition = false;
@@ -52,7 +58,7 @@ namespace _Project.Source
 
         private void Update()
         {
-            SynchronizeAnimatorAndAgent();
+            // SynchronizeAnimatorAndAgent();
         }
         
         private Vector2 Velocity;
@@ -103,7 +109,7 @@ namespace _Project.Source
             behaviorAgent.SetVariableValue("randomPlaces", G.main.randomPlaces);
             behaviorAgent.SetVariableValue("blacksmith", G.main.blacksmith.gameObject);
             behaviorAgent.SetVariableValue("alchemist", G.main.alchemist.gameObject);
-            behaviorAgent.SetVariableValue("spa", G.main.spa);
+            behaviorAgent.SetVariableValue("spa", G.main.spa.gameObject);
             
             foreach (var r in renderers)
             {

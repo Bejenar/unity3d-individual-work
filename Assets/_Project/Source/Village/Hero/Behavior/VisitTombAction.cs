@@ -38,9 +38,10 @@ namespace _Project.Source.Behavior
 
         private async UniTask VisitTomb()
         {
-            Debug.Log("Visiting tomb of... " + deadHeroToVisit.name);
             await UniTask.Delay(TimeSpan.FromSeconds(Random.Range(3, 7)));
-            Debug.Log(GetRandomLine());
+            var randomLine = GetRandomLine();
+            
+            G.ui.Say(hero.head, randomLine, 50);
             await UniTask.Delay(TimeSpan.FromSeconds(Random.Range(3, 15)));
             status = Status.Success;
         }

@@ -2698,8 +2698,8 @@
     "m_ObjectId": "0a13e827cdfd469e87dda752ac9ed76a",
     "m_Title": "NormalMap",
     "m_Position": {
-        "x": -908.9998779296875,
-        "y": 318.9999694824219
+        "x": -908.9999389648438,
+        "y": 319.0
     }
 }
 
@@ -3302,8 +3302,8 @@
     "m_ObjectId": "154903d6ba5f4a7da672a744455a8d92",
     "m_Title": "Parallax",
     "m_Position": {
-        "x": -2097.999755859375,
-        "y": 274.0
+        "x": -2098.0,
+        "y": 274.0000305175781
     }
 }
 
@@ -3827,7 +3827,7 @@
     "m_Title": "Hit Effect",
     "m_Position": {
         "x": 1364.999755859375,
-        "y": 651.9998779296875
+        "y": 652.0
     }
 }
 
@@ -4317,8 +4317,8 @@
     "m_ObjectId": "255c782fd4914ae4a7236da09086f856",
     "m_Title": "Is Metallic",
     "m_Position": {
-        "x": -200.99993896484376,
-        "y": -188.99996948242188
+        "x": -201.0,
+        "y": -188.99993896484376
     }
 }
 
@@ -4514,13 +4514,13 @@
     "m_RefNameGeneratedByDisplayName": "Occlusion Map",
     "m_DefaultReferenceName": "_Occlusion_Map",
     "m_OverrideReferenceName": "_OcclusionMap",
-    "m_GeneratePropertyBlock": false,
+    "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
     "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
+    "overrideHLSLDeclaration": true,
+    "hlslDeclarationOverride": 2,
     "m_Hidden": false,
     "m_Value": {
         "m_SerializedTexture": "",
@@ -4973,8 +4973,8 @@
     "m_ObjectId": "30eb404d377b4ee995f488277ff0881a",
     "m_Title": "Emission",
     "m_Position": {
-        "x": -918.9998779296875,
-        "y": 919.9998779296875
+        "x": -918.9999389648438,
+        "y": 919.9999389648438
     }
 }
 
@@ -6805,7 +6805,7 @@
     "m_Title": "Main UVs",
     "m_Position": {
         "x": -1938.9998779296875,
-        "y": 521.9998779296875
+        "y": 522.0
     }
 }
 
@@ -6992,7 +6992,7 @@
     "m_Title": "Selectable",
     "m_Position": {
         "x": 1869.999755859375,
-        "y": 672.9999389648438
+        "y": 673.0
     }
 }
 
@@ -8053,8 +8053,8 @@
     "m_ObjectId": "7c94b6afa12d4c3e99608d58ee801567",
     "m_Title": "Hair Tint",
     "m_Position": {
-        "x": 1078.9998779296875,
-        "y": 667.9998779296875
+        "x": 1079.0,
+        "y": 668.0
     }
 }
 
@@ -8490,7 +8490,7 @@
     "m_Title": "Metallic",
     "m_Position": {
         "x": -867.9999389648438,
-        "y": -323.9999694824219
+        "y": -324.0
     }
 }
 
@@ -9389,19 +9389,19 @@
     "m_RefNameGeneratedByDisplayName": "Emission Color",
     "m_DefaultReferenceName": "_Emission_Color",
     "m_OverrideReferenceName": "_EmissionColor",
-    "m_GeneratePropertyBlock": false,
+    "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
     "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
+    "overrideHLSLDeclaration": true,
+    "hlslDeclarationOverride": 2,
     "m_Hidden": false,
     "m_Value": {
         "r": 0.0,
         "g": 0.0,
         "b": 0.0,
-        "a": 1.0
+        "a": 0.0
     },
     "isMainColor": false,
     "m_ColorMode": 1
@@ -10040,8 +10040,8 @@
     "m_ObjectId": "a79adeb299a4447aa2aa6b76e1e220d0",
     "m_Title": "BaseColor",
     "m_Position": {
-        "x": -61.0,
-        "y": -489.99993896484377
+        "x": -61.00010299682617,
+        "y": -490.0
     }
 }
 
@@ -10564,8 +10564,8 @@
     "m_ObjectId": "b4ab1432e21d4fdcadb52c542f96596b",
     "m_Title": "Occlusion",
     "m_Position": {
-        "x": -887.9998779296875,
-        "y": 617.9999389648438
+        "x": -887.9999389648438,
+        "y": 618.0
     }
 }
 
@@ -10754,13 +10754,13 @@
     "m_RefNameGeneratedByDisplayName": "Emission Map",
     "m_DefaultReferenceName": "_Emission_Map",
     "m_OverrideReferenceName": "_EmissionMap",
-    "m_GeneratePropertyBlock": false,
+    "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
     "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
+    "overrideHLSLDeclaration": true,
+    "hlslDeclarationOverride": 2,
     "m_Hidden": false,
     "m_Value": {
         "m_SerializedTexture": "",
@@ -12181,7 +12181,7 @@
     "m_Title": "Detail UVs",
     "m_Position": {
         "x": -792.9999389648438,
-        "y": 1221.999755859375
+        "y": 1221.9998779296875
     }
 }
 
@@ -13727,8 +13727,8 @@
     "m_ObjectId": "f4abc26fcbb04c9c82fae6329be6c22b",
     "m_Title": "Specular",
     "m_Position": {
-        "x": -917.9998779296875,
-        "y": 5.000022888183594
+        "x": -917.9999389648438,
+        "y": 5.000026702880859
     }
 }
 

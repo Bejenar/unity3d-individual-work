@@ -12,7 +12,11 @@
     ],
     "m_Keywords": [],
     "m_Dropdowns": [],
-    "m_CategoryData": [],
+    "m_CategoryData": [
+        {
+            "m_Id": "c8496eb260644106ad3bf488c64f2ff8"
+        }
+    ],
     "m_Nodes": [
         {
             "m_Id": "5c3cd59710044f7eb77c581a357d302d"
@@ -282,7 +286,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_BlendMode": 13
+    "m_BlendMode": 21
 }
 
 {
@@ -477,6 +481,21 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "c8496eb260644106ad3bf488c64f2ff8",
+    "m_Name": "",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "e39ec7cfebcf40dc824d6dcb469e655e"
+        },
+        {
+            "m_Id": "75e6c994b8a742cb86b365b507135752"
+        }
+    ]
 }
 
 {

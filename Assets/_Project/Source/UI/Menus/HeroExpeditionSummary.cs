@@ -31,7 +31,7 @@ namespace _Project.Source.Village.UI
             this.hero = hero;
             oldLevel = hero.Level;
             gold = hero.Gold;
-            oldExperience = hero.Experience;
+            oldExperience = hero.Experience - hero.EXPERIENCE_LEVELS[hero.Level];
             diedMask.gameObject.SetActive(false);
             UpdateView();
         }

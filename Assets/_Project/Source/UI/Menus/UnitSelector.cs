@@ -97,6 +97,7 @@ namespace _Project.Source.Village.UI
 
         public async void ToBattle()
         {
+            G.ui.DisableInput();
             G.ui.CloseQuestBoard();
             await CloseAsync();
             await G.main.ToBattle(selectedUnits.Select(unit => unit.hero).ToList());

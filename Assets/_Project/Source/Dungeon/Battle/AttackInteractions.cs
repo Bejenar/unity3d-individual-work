@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using _Project.Data;
 using _Project.Data.Items;
+using _Project.Data.Monsters;
 using _Project.Source.Village.UI;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -52,9 +54,10 @@ namespace _Project.Source.Dungeon.Battle
     {
         public async UniTask OnAttack(FieldData data, DungeonCharacter actor)
         {
+            if (!actor.IsParticipating()) return;
+            
             if (!actor.unit.model.Is<T>(out var val)) return;
-
-
+            
             Debug.Log("Attacking: " + actor.name);
             await OnAttack(data, actor, val);
         }
@@ -117,20 +120,26 @@ namespace _Project.Source.Dungeon.Battle
 
             var tasks = targets.Select(async target =>
             {
-                // TODO spawn particles under each target
                 var dmg = await FieldData.TryAttack(actor, target);
                 
                 // TODO evade block miss?
-                var vfx = Object.Instantiate(tag.effectPerUnitHit, target.transform);
-                vfx.transform.SetParent(null);
                 G.dungeon.hud.ShowDamageText((int)-dmg, target.transform.position, target is DungeonHero, false);
                 
                 await UniTask.WhenAll(
                     target.TakeDamage(dmg),
-                    UniTask.WaitForSeconds(vfx.duration));
+                    SpawnVFX(actor, tag, target));
             }).ToArray();
 
             await UniTask.WhenAll(tasks);
+        }
+
+        private async UniTask SpawnVFX(DungeonCharacter actor, TagAoeAttack tag, DungeonCharacter target)
+        {
+            var vfxInteractors = G.interactor.FindAll<IAttackEffectBehavior>();
+            foreach (var vfxInteractor in vfxInteractors)
+            {
+                await vfxInteractor.Execute(actor, target, tag);
+            }
         }
     }
 

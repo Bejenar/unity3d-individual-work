@@ -20,7 +20,7 @@ namespace _Project.Source
         public BaseRingEntity Ring;
 
         public string name;
-        public float sanity = 50;
+        public float sanity = 20;
 
         public int Level;
         public string Title;
@@ -39,7 +39,7 @@ namespace _Project.Source
 
 
         public string LastAttackerName;
-        // public Vector2 LastVillagePosition;
+        public Vector2 LastVillagePosition;
 
         public int HiringCost = 5;
 
@@ -136,13 +136,8 @@ namespace _Project.Source
             Traits.Remove<TagWitnessedDeathNow>();
         }
 
-        public void WitnessDeath(Hero hero)
+        public void WitnessDeath(DeceasedHero deceasedHero)
         {
-            var deceasedHero = new DeceasedHero()
-            {
-                name = hero.name,
-            };
-
             Traits.GetOrAdd(CMS.Get<WitnessedDeathTrait>())
                 .GetOrAdd<WitnessedDeathState>().deceasedHeroes.Add(deceasedHero);
             Traits.GetOrAdd(CMS.Get<WitnessedDeathNowTrait>())
@@ -173,18 +168,15 @@ namespace _Project.Source
             SessionGold = 0;
             fled = false;
             died = false;
+            sanity = 20;
         }
     }
 
     [Serializable]
     public class DeceasedHero
     {
-        [JsonProperty]
-        private int? _tombPlace;
+        public int tombPlace;
 
         public String name;
-        
-        [JsonIgnore]
-        public int tombPlace => _tombPlace ??= G.cemetry.GetAvailableGrave();
     }
 }

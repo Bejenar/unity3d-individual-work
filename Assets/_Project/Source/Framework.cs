@@ -11,4 +11,5 @@ public class G : Core
     public static Main main;
     public static ScreenFader fader;
     public static GameState state;
+    public static RTSCamera cam;
 }

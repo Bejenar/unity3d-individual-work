@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Project.Data.Traits;
 using UnityEngine;
 
 namespace _Project.Data.Items
@@ -16,6 +17,30 @@ namespace _Project.Data.Items
             Define<TagEquipableBy>().classes = new List<Type>();
         }
     }
+    
+    public class Excalibur : BaseWeaponEntity
+    {
+        public Excalibur()
+        {
+            Define<TagItemName>().name = "Excalibur";
+            Define<TagWeaponDamage>().range = new Vector2Int(10, 10);
+            Define<TagPrice>().price = 5;
+            Define<TagTier>().tier = 1;
+        }
+    }
+
+    public class HeroTrait : CMSEntity
+    {
+        public HeroTrait()
+        {
+            Define<TagTraitView>().name = "Default Trait";
+            Define<TagStatsBuff>().health = 20;
+            Define<TagStatsBuff>().damage = new Vector2Int(20, 20);
+            Define<TagStatsBuff>().hitChance = 1;
+            Define<TagStatsBuff>().evasion = 1f;
+        }
+    }
+
 
     public class IronSword : BaseWeaponEntity
     {
@@ -27,209 +52,210 @@ namespace _Project.Data.Items
             Define<TagTier>().tier = 1;
             Define<TagEquipableBy>().classes.Add(typeof(Tank));
         }
+    }
 
-        public class SteelSword : BaseWeaponEntity
+
+    public class SteelSword : BaseWeaponEntity
+    {
+        public SteelSword()
         {
-            public SteelSword()
-            {
-                Define<TagItemName>().name = "Steel Sword";
-                Define<TagWeaponDamage>().range = new Vector2Int(2, 4);
-                Define<TagPrice>().price = 30;
-                Define<TagTier>().tier = 2;
-                Define<TagEquipableBy>().classes.Add(typeof(Tank));
-            }
+            Define<TagItemName>().name = "Steel Sword";
+            Define<TagWeaponDamage>().range = new Vector2Int(2, 4);
+            Define<TagPrice>().price = 30;
+            Define<TagTier>().tier = 2;
+            Define<TagEquipableBy>().classes.Add(typeof(Tank));
         }
+    }
 
-        public class DamasceneSword : BaseWeaponEntity
+    public class DamasceneSword : BaseWeaponEntity
+    {
+        public DamasceneSword()
         {
-            public DamasceneSword()
-            {
-                Define<TagItemName>().name = "Damascene Sword";
-                Define<TagWeaponDamage>().range = new Vector2Int(3, 5);
-                Define<TagPrice>().price = 75;
-                Define<TagTier>().tier = 3;
-                Define<TagEquipableBy>().classes.Add(typeof(Tank));
-            }
+            Define<TagItemName>().name = "Damascene Sword";
+            Define<TagWeaponDamage>().range = new Vector2Int(3, 5);
+            Define<TagPrice>().price = 75;
+            Define<TagTier>().tier = 3;
+            Define<TagEquipableBy>().classes.Add(typeof(Tank));
         }
+    }
 
-        public class Pitchfork : BaseWeaponEntity
+    public class Pitchfork : BaseWeaponEntity
+    {
+        public Pitchfork()
         {
-            public Pitchfork()
-            {
-                Define<TagItemName>().name = "Pitchfork";
-                Define<TagWeaponDamage>().range = new Vector2Int(0, 2);
-                Define<TagPrice>().price = 5;
-                Define<TagTier>().tier = 1;
-                Define<TagEquipableBy>().classes.Add(typeof(Captain));
-            }
+            Define<TagItemName>().name = "Pitchfork";
+            Define<TagWeaponDamage>().range = new Vector2Int(0, 2);
+            Define<TagPrice>().price = 5;
+            Define<TagTier>().tier = 1;
+            Define<TagEquipableBy>().classes.Add(typeof(Captain));
         }
+    }
 
-        public class Greatspear : BaseWeaponEntity
+    public class Greatspear : BaseWeaponEntity
+    {
+        public Greatspear()
         {
-            public Greatspear()
-            {
-                Define<TagItemName>().name = "Greatspear";
-                Define<TagWeaponDamage>().range = new Vector2Int(1, 3);
-                Define<TagPrice>().price = 30;
-                Define<TagTier>().tier = 2;
-                Define<TagEquipableBy>().classes.Add(typeof(Captain));
-            }
+            Define<TagItemName>().name = "Greatspear";
+            Define<TagWeaponDamage>().range = new Vector2Int(1, 3);
+            Define<TagPrice>().price = 30;
+            Define<TagTier>().tier = 2;
+            Define<TagEquipableBy>().classes.Add(typeof(Captain));
         }
+    }
 
-        public class GrandHalberd : BaseWeaponEntity
+    public class GrandHalberd : BaseWeaponEntity
+    {
+        public GrandHalberd()
         {
-            public GrandHalberd()
-            {
-                Define<TagItemName>().name = "Grand Halberd";
-                Define<TagWeaponDamage>().range = new Vector2Int(1, 4);
-                Define<TagPrice>().price = 75;
-                Define<TagTier>().tier = 3;
-                Define<TagEquipableBy>().classes.Add(typeof(Captain));
-            }
+            Define<TagItemName>().name = "Grand Halberd";
+            Define<TagWeaponDamage>().range = new Vector2Int(1, 4);
+            Define<TagPrice>().price = 75;
+            Define<TagTier>().tier = 3;
+            Define<TagEquipableBy>().classes.Add(typeof(Captain));
         }
+    }
 
-        public class WoodcutterAxe : BaseWeaponEntity
+    public class WoodcutterAxe : BaseWeaponEntity
+    {
+        public WoodcutterAxe()
         {
-            public WoodcutterAxe()
-            {
-                Define<TagItemName>().name = "Woodcutter Axe";
-                Define<TagWeaponDamage>().range = new Vector2Int(2, 4);
-                Define<TagPrice>().price = 5;
-                Define<TagTier>().tier = 1;
-                Define<TagEquipableBy>().classes.Add(typeof(Barbarian));
-            }
+            Define<TagItemName>().name = "Woodcutter Axe";
+            Define<TagWeaponDamage>().range = new Vector2Int(2, 4);
+            Define<TagPrice>().price = 5;
+            Define<TagTier>().tier = 1;
+            Define<TagEquipableBy>().classes.Add(typeof(Barbarian));
         }
+    }
 
-        public class Battleaxe : BaseWeaponEntity
+    public class Battleaxe : BaseWeaponEntity
+    {
+        public Battleaxe()
         {
-            public Battleaxe()
-            {
-                Define<TagItemName>().name = "Battleaxe";
-                Define<TagWeaponDamage>().range = new Vector2Int(3, 8);
-                Define<TagPrice>().price = 30;
-                Define<TagTier>().tier = 2;
-                Define<TagEquipableBy>().classes.Add(typeof(Barbarian));
-            }
+            Define<TagItemName>().name = "Battleaxe";
+            Define<TagWeaponDamage>().range = new Vector2Int(3, 8);
+            Define<TagPrice>().price = 30;
+            Define<TagTier>().tier = 2;
+            Define<TagEquipableBy>().classes.Add(typeof(Barbarian));
         }
+    }
 
-        public class ChampionsAxe : BaseWeaponEntity
+    public class ChampionsAxe : BaseWeaponEntity
+    {
+        public ChampionsAxe()
         {
-            public ChampionsAxe()
-            {
-                Define<TagItemName>().name = "Champion's Axe";
-                Define<TagWeaponDamage>().range = new Vector2Int(4, 12);
-                Define<TagPrice>().price = 75;
-                Define<TagTier>().tier = 3;
-                Define<TagEquipableBy>().classes.Add(typeof(Barbarian));
-            }
+            Define<TagItemName>().name = "Champion's Axe";
+            Define<TagWeaponDamage>().range = new Vector2Int(4, 12);
+            Define<TagPrice>().price = 75;
+            Define<TagTier>().tier = 3;
+            Define<TagEquipableBy>().classes.Add(typeof(Barbarian));
         }
+    }
 
-        public class OldCrossbow : BaseWeaponEntity
+    public class OldCrossbow : BaseWeaponEntity
+    {
+        public OldCrossbow()
         {
-            public OldCrossbow()
-            {
-                Define<TagItemName>().name = "Old Crossbow";
-                Define<TagWeaponDamage>().range = new Vector2Int(1, 3);
-                Define<TagPrice>().price = 5;
-                Define<TagTier>().tier = 1;
-                Define<TagEquipableBy>().classes.Add(typeof(Ranger));
-            }
+            Define<TagItemName>().name = "Old Crossbow";
+            Define<TagWeaponDamage>().range = new Vector2Int(1, 3);
+            Define<TagPrice>().price = 5;
+            Define<TagTier>().tier = 1;
+            Define<TagEquipableBy>().classes.Add(typeof(Ranger));
         }
+    }
 
-        public class SteelCrossbow : BaseWeaponEntity
+    public class SteelCrossbow : BaseWeaponEntity
+    {
+        public SteelCrossbow()
         {
-            public SteelCrossbow()
-            {
-                Define<TagItemName>().name = "Steel Crossbow";
-                Define<TagWeaponDamage>().range = new Vector2Int(3, 6);
-                Define<TagPrice>().price = 30;
-                Define<TagTier>().tier = 2;
-                Define<TagEquipableBy>().classes.Add(typeof(Ranger));
-            }
+            Define<TagItemName>().name = "Steel Crossbow";
+            Define<TagWeaponDamage>().range = new Vector2Int(3, 6);
+            Define<TagPrice>().price = 30;
+            Define<TagTier>().tier = 2;
+            Define<TagEquipableBy>().classes.Add(typeof(Ranger));
         }
+    }
 
-        public class BattleCrossbow : BaseWeaponEntity
+    public class BattleCrossbow : BaseWeaponEntity
+    {
+        public BattleCrossbow()
         {
-            public BattleCrossbow()
-            {
-                Define<TagItemName>().name = "Battle Crossbow";
-                Define<TagWeaponDamage>().range = new Vector2Int(5, 10);
-                Define<TagPrice>().price = 75;
-                Define<TagTier>().tier = 3;
-                Define<TagEquipableBy>().classes.Add(typeof(Ranger));
-            }
+            Define<TagItemName>().name = "Battle Crossbow";
+            Define<TagWeaponDamage>().range = new Vector2Int(5, 10);
+            Define<TagPrice>().price = 75;
+            Define<TagTier>().tier = 3;
+            Define<TagEquipableBy>().classes.Add(typeof(Ranger));
         }
+    }
 
-        public class AshStaff : BaseWeaponEntity
+    public class AshStaff : BaseWeaponEntity
+    {
+        public AshStaff()
         {
-            public AshStaff()
-            {
-                Define<TagItemName>().name = "Ash Staff";
-                Define<TagWeaponDamage>().range = new Vector2Int(0, 2);
-                Define<TagPrice>().price = 5;
-                Define<TagTier>().tier = 1;
-                Define<TagEquipableBy>().classes.Add(typeof(Mage));
-            }
+            Define<TagItemName>().name = "Ash Staff";
+            Define<TagWeaponDamage>().range = new Vector2Int(0, 2);
+            Define<TagPrice>().price = 5;
+            Define<TagTier>().tier = 1;
+            Define<TagEquipableBy>().classes.Add(typeof(Mage));
         }
+    }
 
-        public class CherryStaff : BaseWeaponEntity
+    public class CherryStaff : BaseWeaponEntity
+    {
+        public CherryStaff()
         {
-            public CherryStaff()
-            {
-                Define<TagItemName>().name = "Cherry Staff";
-                Define<TagWeaponDamage>().range = new Vector2Int(1, 4);
-                Define<TagPrice>().price = 30;
-                Define<TagTier>().tier = 2;
-                Define<TagEquipableBy>().classes.Add(typeof(Mage));
-            }
+            Define<TagItemName>().name = "Cherry Staff";
+            Define<TagWeaponDamage>().range = new Vector2Int(1, 4);
+            Define<TagPrice>().price = 30;
+            Define<TagTier>().tier = 2;
+            Define<TagEquipableBy>().classes.Add(typeof(Mage));
         }
+    }
 
-        public class EbonyStaff : BaseWeaponEntity
+    public class EbonyStaff : BaseWeaponEntity
+    {
+        public EbonyStaff()
         {
-            public EbonyStaff()
-            {
-                Define<TagItemName>().name = "Ebony Staff";
-                Define<TagWeaponDamage>().range = new Vector2Int(2, 6);
-                Define<TagPrice>().price = 75;
-                Define<TagTier>().tier = 3;
-                Define<TagEquipableBy>().classes.Add(typeof(Mage));
-            }
+            Define<TagItemName>().name = "Ebony Staff";
+            Define<TagWeaponDamage>().range = new Vector2Int(2, 6);
+            Define<TagPrice>().price = 75;
+            Define<TagTier>().tier = 3;
+            Define<TagEquipableBy>().classes.Add(typeof(Mage));
         }
+    }
 
-        public class StaleMedicine : BaseWeaponEntity
+    public class StaleMedicine : BaseWeaponEntity
+    {
+        public StaleMedicine()
         {
-            public StaleMedicine()
-            {
-                Define<TagItemName>().name = "Stale Medicine";
-                Define<TagWeaponDamage>().range = new Vector2Int(0, 2);
-                Define<TagPrice>().price = 5;
-                Define<TagTier>().tier = 1;
-                Define<TagEquipableBy>().classes.Add(typeof(Healer));
-            }
+            Define<TagItemName>().name = "Stale Medicine";
+            Define<TagWeaponDamage>().range = new Vector2Int(0, 2);
+            Define<TagPrice>().price = 5;
+            Define<TagTier>().tier = 1;
+            Define<TagEquipableBy>().classes.Add(typeof(Healer));
         }
+    }
 
-        public class FieldMedicine : BaseWeaponEntity
+    public class FieldMedicine : BaseWeaponEntity
+    {
+        public FieldMedicine()
         {
-            public FieldMedicine()
-            {
-                Define<TagItemName>().name = "Field Medicine";
-                Define<TagWeaponDamage>().range = new Vector2Int(0, 4);
-                Define<TagPrice>().price = 30;
-                Define<TagTier>().tier = 2;
-                Define<TagEquipableBy>().classes.Add(typeof(Healer));
-            }
+            Define<TagItemName>().name = "Field Medicine";
+            Define<TagWeaponDamage>().range = new Vector2Int(0, 4);
+            Define<TagPrice>().price = 30;
+            Define<TagTier>().tier = 2;
+            Define<TagEquipableBy>().classes.Add(typeof(Healer));
         }
+    }
 
-        public class ExoticMedicine : BaseWeaponEntity
+    public class ExoticMedicine : BaseWeaponEntity
+    {
+        public ExoticMedicine()
         {
-            public ExoticMedicine()
-            {
-                Define<TagItemName>().name = "Exotic Medicine";
-                Define<TagWeaponDamage>().range = new Vector2Int(2, 6);
-                Define<TagPrice>().price = 75;
-                Define<TagTier>().tier = 3;
-                Define<TagEquipableBy>().classes.Add(typeof(Healer));
-            }
+            Define<TagItemName>().name = "Exotic Medicine";
+            Define<TagWeaponDamage>().range = new Vector2Int(2, 6);
+            Define<TagPrice>().price = 75;
+            Define<TagTier>().tier = 3;
+            Define<TagEquipableBy>().classes.Add(typeof(Healer));
         }
     }
 }

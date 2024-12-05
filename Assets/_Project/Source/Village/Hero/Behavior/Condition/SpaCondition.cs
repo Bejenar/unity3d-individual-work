@@ -15,7 +15,7 @@ public partial class SpaCondition : Condition
     {
         if (Hero.Value.hero.sanity < 50)
         {
-            return true;
+            return Random.value < 0.4f;
         }
         
         return Random.value < 0.1f;

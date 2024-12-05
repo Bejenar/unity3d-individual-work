@@ -5,11 +5,15 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityUtils;
 
 namespace _Project.Source.Village.UI
 {
     public class UIManager : MonoBehaviour
     {
+        public Canvas mainCanvas;
+        public SpeechBubble speechBubblePrefab;
+        
         public GameObject questBoard;
         public GameObject disableInput;
 
@@ -61,6 +65,13 @@ namespace _Project.Source.Village.UI
             // OpenQuestBoard();
         }
 
+        public void Say(Transform parent, string text, int yOffset = 0)
+        {
+            var bubble = Instantiate(speechBubblePrefab, mainCanvas.transform);
+            bubble.transform.SetSiblingIndex(0);
+            bubble.Print(parent, text, yOffset);
+        }
+
         public void Punch(Transform target)
         {
             target.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.2f);
@@ -99,6 +110,7 @@ namespace _Project.Source.Village.UI
 
         public async UniTask ShowWindow(GameObject window)
         {
+            G.cam?.ToggleInput(false);
             window.transform.localScale = Vector3.zero;
             window.SetActive(true);
             await window.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
@@ -107,19 +119,25 @@ namespace _Project.Source.Village.UI
         public async UniTask CloseWindow(GameObject window)
         {
             await window.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack)
-                .OnComplete(() => window.SetActive(false));
+                .OnComplete(() =>
+                {
+                    G.cam?.ToggleInput(true);
+                    window.SetActive(false);
+                });
         }
 
         public void DisableInput()
         {
             Debug.Log("DisableInput");
-            disableInput.SetActive(true);
+            G.cam?.ToggleInput(false);
+            disableInput?.SetActive(true);
         }
 
         public void EnableInput()
         {
             Debug.Log("EnableInput");
-            disableInput.SetActive(false);
+            G.cam?.ToggleInput(true);
+            disableInput?.SetActive(false);
         }
     }
 }

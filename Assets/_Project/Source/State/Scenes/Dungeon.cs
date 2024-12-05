@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Data;
+using _Project.Data.Dungeons;
 using _Project.Data.Items;
 using _Project.Data.Monsters;
 using _Project.Data.Traits;
@@ -84,8 +85,21 @@ namespace _Project.Source.Scenes
                 // selected.Add(HeroSummoning.CreateHero(CMS.Get<Barbarian>()));
                 selected.Add(HeroSummoning.CreateHero(CMS.Get<Healer>()));
                 selected.Add(HeroSummoning.CreateHero(CMS.Get<Mage>()));
-
-                G.state.selectedDungeon = CMS.Get<Level1>();
+                
+                
+                foreach (var hero in selected)
+                {
+                    hero.LevelUp();
+                    hero.LevelUp();
+                    hero.LevelUp();
+                    hero.LevelUp();
+                    hero.LevelUp();
+                    hero.LevelUp();
+                    hero.Weapon = CMS.Get<Excalibur>();
+                    hero.AddTrait<HeroTrait>();
+                }
+                
+                G.state.selectedDungeon = CMS.Get<Level3>();
             }
 
             for (int i = 0; i < selected.Count; i++)
@@ -255,6 +269,7 @@ namespace _Project.Source.Scenes
             await UniTask.WaitForEndOfFrame();
             var summonMonster = Instantiate(monster.model.Get<TagMonsterPrefab>().prefab, parent);
             summonMonster.transform.localPosition = Random.insideUnitSphere.With(y: 0) * 0.1f;
+            summonMonster.transform.localRotation = Quaternion.Euler(0, 180, 0);
             summonMonster.Init(monster);
             return summonMonster;
         }

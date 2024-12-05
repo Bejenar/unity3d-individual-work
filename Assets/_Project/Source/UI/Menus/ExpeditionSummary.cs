@@ -12,6 +12,7 @@ namespace _Project.Source.Village.UI
         
         public async void Show()
         {
+            G.cam?.ToggleInput(false);
             gameObject.SetActive(true);
             transform.localScale = Vector3.zero;
             container.DestroyChildren();
@@ -29,6 +30,7 @@ namespace _Project.Source.Village.UI
             transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InOutBack).OnComplete(() =>
             {
                 gameObject.SetActive(false);
+                G.cam?.ToggleInput(true);
             });
         }
     }

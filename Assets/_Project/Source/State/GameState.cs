@@ -20,6 +20,7 @@ namespace _Project.Source
         
         public int maxUnits = 5;
         public List<Hero> selectedHeroes = new List<Hero>();
+        public List<Hero> deceasedHeroes = new List<Hero>();
         
         public bool canSummonToday = true;
         public bool isFirstSummon = true;
