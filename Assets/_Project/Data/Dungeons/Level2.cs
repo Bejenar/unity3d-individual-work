@@ -11,6 +11,7 @@ using _Project.Data.Monsters;
             Define<TagListChallenges>().all.Add(E.Id<Wave2_4>());
             Define<TagListChallenges>().all.Add(E.Id<Wave2_1Boss>());
             Define<TagTier>().tier = 2;
+            Define<TagLevelView>().sprite = SpriteUtil.Load("Art/dungIcon2");
             Define<TagLevelView>().dungeonPrefab = GameResources.Prefabs.Dungeon.DungeonPrefab__2_;
         }
     }

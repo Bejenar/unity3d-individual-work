@@ -57,6 +57,12 @@ public static class SaveSystem
     {
         GUIUtility.systemCopyBuffer = PlayerPrefs.GetString(SlotId, "{}");
     }
+    
+    [MenuItem("Tools/[Save] Load save from clipboard")]
+    public static void LoadSaveFile()
+    { 
+        PlayerPrefs.SetString(SlotId, GUIUtility.systemCopyBuffer);
+    }
 
     private const string MenuName = "Tools/[Save] Load Existing Save";
     private const string SettingName = "CleanSave";

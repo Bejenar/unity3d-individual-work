@@ -29,6 +29,7 @@ public class Level1 : CMSEntity
         Define<TagListChallenges>().all.Add(E.Id<Wave4>());
         Define<TagListChallenges>().all.Add(E.Id<Wave1Boss>());
         Define<TagTier>().tier = 1;
+        Define<TagLevelView>().sprite = SpriteUtil.Load("Art/dungIcon1");
         Define<TagLevelView>().dungeonPrefab = GameResources.Prefabs.Dungeon.DungeonPrefab__1_;
     }
 }
