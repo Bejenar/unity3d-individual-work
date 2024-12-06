@@ -83,6 +83,7 @@ namespace _Project.Source.Village
             }
 
             if (affordableEquip != null &&
+                currentEquipment.Get<TagTier>().tier < affordableEquip.Get<TagTier>().tier &&
                 currentEquipment.Get<TagItemName>().name != affordableEquip.Get<TagItemName>().name)
             {
                 return affordableEquip;

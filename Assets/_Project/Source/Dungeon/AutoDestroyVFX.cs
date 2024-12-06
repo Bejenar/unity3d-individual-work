@@ -16,7 +16,7 @@ namespace _Project.Source.Dungeon.Battle
             visualEffect = GetComponent<VisualEffect>();
             if (visualEffect != null)
             {
-                await UniTask.WaitForSeconds(duration);
+                await UniTask.WaitForSeconds(duration * 2 + 3);
                 Destroy(gameObject);
             }
         }

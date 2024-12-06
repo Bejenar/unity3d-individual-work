@@ -36,8 +36,9 @@ namespace _Project.Data.Items
             Define<TagTraitView>().name = "Default Trait";
             Define<TagStatsBuff>().health = 20;
             Define<TagStatsBuff>().damage = new Vector2Int(20, 20);
-            Define<TagStatsBuff>().hitChance = 1;
-            Define<TagStatsBuff>().evasion = 1f;
+            Define<TagStatsBuff>().evasion = 0.3f;
+            Define<TagStatsBuff>().critChance = 0.3f;
+            
         }
     }
 

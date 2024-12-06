@@ -1,3 +1,4 @@
+using _Project.Source;
 using UnityEngine;
 
 namespace _Project.Data
@@ -7,5 +8,6 @@ namespace _Project.Data
         public Sprite icon;
         public string loc;
         public int line = 1;
+        public VillageHero villagePrefab;
     }
 }

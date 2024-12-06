@@ -63,6 +63,25 @@ namespace _Project.Source.Dungeon.Battle
         }
 
         public abstract UniTask OnAttack(FieldData data, DungeonCharacter actor, T tag);
+
+        public static void ResolveDamageText(float dmg, FieldData.AttackResult result, Vector3 position, bool isHero)
+        {
+            switch (result)
+            {
+                case var p when (p & FieldData.AttackResult.Damage) == FieldData.AttackResult.Damage:
+                    G.dungeon.hud.ShowDamageText((int)-dmg, position, isHero, p.HasFlag(FieldData.AttackResult.Critical));
+                    break;
+                case FieldData.AttackResult.Missed:
+                    G.dungeon.hud.ShowMissText(position);
+                    break;
+                case FieldData.AttackResult.Blocked:
+                    G.dungeon.hud.ShowBlockText(position);
+                    break;
+                case FieldData.AttackResult.Evaded:
+                    G.dungeon.hud.ShowEvadeText(position);
+                    break;
+            }
+        }
     }
 
     public class MeleeAttackInteraction : AttackInteraction<TagMeleeAttack>
@@ -76,12 +95,11 @@ namespace _Project.Source.Dungeon.Battle
                 return;
             }
 
-            var dmg = await FieldData.TryAttack(actor, target);
+            var (dmg, res)  = await FieldData.TryAttack(actor, target);
             
             await UniTask.WaitUntilCanceled(actor.AttackAnimation());
 
-            // TODO evade block miss?
-            G.dungeon.hud.ShowDamageText((int)-dmg, target.transform.position, target is DungeonHero, false);
+            ResolveDamageText(dmg, res, target.transform.position, target is DungeonHero);
             await target.TakeDamage(dmg);
         }
     }
@@ -99,12 +117,11 @@ namespace _Project.Source.Dungeon.Battle
                 return;
             }
 
-            var dmg = await FieldData.TryAttack(actor, target);
+            var (dmg, res) = await FieldData.TryAttack(actor, target);
 
             await UniTask.WaitUntilCanceled(actor.AttackAnimation());
 
-            // TODO evade block miss?
-            G.dungeon.hud.ShowDamageText((int)-dmg, target.transform.position, target is DungeonHero, false);
+            ResolveDamageText(dmg, res, target.transform.position, target is DungeonHero);
             await target.TakeDamage(dmg);
         }
     }
@@ -120,10 +137,9 @@ namespace _Project.Source.Dungeon.Battle
 
             var tasks = targets.Select(async target =>
             {
-                var dmg = await FieldData.TryAttack(actor, target);
+                var (dmg, res)  = await FieldData.TryAttack(actor, target);
                 
-                // TODO evade block miss?
-                G.dungeon.hud.ShowDamageText((int)-dmg, target.transform.position, target is DungeonHero, false);
+                ResolveDamageText(dmg, res, target.transform.position, target is DungeonHero);
                 
                 await UniTask.WhenAll(
                     target.TakeDamage(dmg),
@@ -159,8 +175,6 @@ namespace _Project.Source.Dungeon.Battle
 
             await UniTask.WaitUntilCanceled(actor.MagicAnimation());
 
-            // TODO spawn heal particles under target
-            Debug.Log("Healing: " + heal);
             if ((int)heal > 0)
                 G.dungeon.hud.ShowDamageText((int)heal, target.transform.position, target is DungeonHero, false);
             else 

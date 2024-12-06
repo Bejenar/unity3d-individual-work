@@ -1,11 +1,12 @@
 using _Project.Data.Items;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace _Project.Source.Village.UI
 {
-    public class QuestPaper : MonoBehaviour
+    public class QuestPaper : MonoBehaviour, IPointerClickHandler
     {
         public string modelId;
         private CMSEntity model; // TODO LIBRARY support serializable CMSEntity builder
@@ -35,6 +36,11 @@ namespace _Project.Source.Village.UI
 
             G.state.selectedDungeon = model;
             G.ui.ShowUnitPickerAsync();
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            SelectQuest();
         }
     }
 }

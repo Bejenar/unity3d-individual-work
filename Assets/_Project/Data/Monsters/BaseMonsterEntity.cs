@@ -3,7 +3,6 @@ using _Project.Source.Dungeon.Battle;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.VFX;
 
 namespace _Project.Data.Monsters
 {
@@ -18,14 +17,12 @@ namespace _Project.Data.Monsters
 
     public class TagHeroPrefab : TagPrefab<DungeonHero>
     {
-        
     }
 
     public class TagMonsterPrefab : TagPrefab<DungeonMonster>
     {
-        
     }
-    
+
     public class TagCoinDrop : EntityComponentDefinition
     {
         public int coins;
@@ -47,8 +44,7 @@ namespace _Project.Data.Monsters
         public float blockage;
         public float gutsAmount;
     }
-    
-    
+
 
     public class Mushroom : BaseMonsterEntity
     {
@@ -86,7 +82,6 @@ namespace _Project.Data.Monsters
             Define<TagBaseStats>().blockage = 0.0f;
             Define<TagBaseStats>().gutsAmount = 5.0f;
             Define<TagMeleeAttack>();
-
         }
     }
 
@@ -106,7 +101,6 @@ namespace _Project.Data.Monsters
             Define<TagBaseStats>().blockage = 0.0f;
             Define<TagBaseStats>().gutsAmount = 8.0f;
             Define<TagMeleeAttack>();
-
         }
     }
 
@@ -127,7 +121,6 @@ namespace _Project.Data.Monsters
             Define<TagBaseStats>().blockage = 0.7f;
             Define<TagBaseStats>().gutsAmount = 2.0f;
             Define<TagMeleeAttack>();
-
         }
     }
 
@@ -147,7 +140,6 @@ namespace _Project.Data.Monsters
             Define<TagBaseStats>().blockage = 0.5f;
             Define<TagBaseStats>().gutsAmount = 2.0f;
             Define<TagRangedAttack>();
-
         }
     }
 
@@ -168,7 +160,6 @@ namespace _Project.Data.Monsters
             Define<TagBaseStats>().blockage = 0.0f;
             Define<TagBaseStats>().gutsAmount = 2.0f;
             Define<TagHealAttack>().healEffect = "VFX/vfx_Healing".Load<AutoDestroyVFX>();
-
         }
     }
 
@@ -204,8 +195,8 @@ namespace _Project.Data.Monsters
             Define<TagBaseStats>().evasion = 0.0f;
             Define<TagBaseStats>().hitChance = 0.9f;
             Define<TagBaseStats>().critChance = 0.1f;
-            // Define<TagBaseStats>().blockage = 0.8f; TODO
-            Define<TagBaseStats>().blockage = 0.1f;
+            Define<TagBaseStats>().blockage = 0.8f;
+            // Define<TagBaseStats>().blockage = 0.1f;
             Define<TagBaseStats>().gutsAmount = 0.0f;
             Define<TagMeleeAttack>();
         }
@@ -226,7 +217,7 @@ namespace _Project.Data.Monsters
             Define<TagBaseStats>().critChance = 0.0f;
             Define<TagBaseStats>().blockage = 0.5f;
             Define<TagBaseStats>().gutsAmount = 2.0f;
-            Define<TagAoeAttack>().effectPerUnitHit = "VFX/vfx_VerticalBeam".Load<AutoDestroyVFX>();
+            Define<TagAoeAttack>().effectPerUnitHit = "VFX/vfx_VerticalBeam2".Load<AutoDestroyVFX>();
             Define<TagAoeAttack>().attackType = RangedAttackType.Spawn;
         }
     }
@@ -265,7 +256,7 @@ namespace _Project.Data.Monsters
             Define<TagBaseStats>().critChance = 0.0f;
             Define<TagBaseStats>().blockage = 0.5f;
             Define<TagBaseStats>().gutsAmount = 10.0f;
-            Define<TagAoeAttack>().effectPerUnitHit = "VFX/vfx_VerticalBeam".Load<AutoDestroyVFX>();
+            Define<TagAoeAttack>().effectPerUnitHit = "VFX/vfx_FireBall".Load<AutoDestroyVFX>();
             Define<TagAoeAttack>().attackType = RangedAttackType.Projectile;
         }
     }
@@ -274,27 +265,31 @@ namespace _Project.Data.Monsters
     {
         public UniTask Execute(DungeonCharacter actor, DungeonCharacter target, TagAoeAttack tag);
     }
-    
+
     public class LaunchAttackInteraction : BaseInteraction, IAttackEffectBehavior
     {
         public async UniTask Execute(DungeonCharacter actor, DungeonCharacter target, TagAoeAttack tag)
         {
             if (tag.attackType != RangedAttackType.Projectile) return;
-            
-            var vfx = Object.Instantiate(tag.effectPerUnitHit, actor.transform);
-            vfx.transform.SetParent(null);
-            await vfx.gameObject.transform.DOMove(target.transform.position, 0.3f);
+
+            var vfx = Object.Instantiate(tag.effectPerUnitHit, actor.head.position, Quaternion.identity);
+            // await vfx.gameObject.transform.DOMove(target.transform.position, vfx.duration);
+            await vfx.gameObject.transform.DOPath(
+                new[]
+                {
+                    actor.head.position, (actor.head.position + target.transform.position) / 2,
+                    target.transform.position
+                }, vfx.duration, PathType.CatmullRom);
         }
     }
-    
+
     public class SpawnAttackInteraction : BaseInteraction, IAttackEffectBehavior
     {
         public async UniTask Execute(DungeonCharacter actor, DungeonCharacter target, TagAoeAttack tag)
         {
             if (tag.attackType != RangedAttackType.Spawn) return;
-            
-            var vfx = Object.Instantiate(tag.effectPerUnitHit, target.transform);
-            vfx.transform.SetParent(null);
+
+            var vfx = Object.Instantiate(tag.effectPerUnitHit, target.transform.position, Quaternion.identity);
             await UniTask.WaitForSeconds(vfx.duration);
         }
     }

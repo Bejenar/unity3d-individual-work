@@ -28,6 +28,8 @@ namespace _Project.Data.Items
 
         private Renderer[] _renderers;
 
+        public Transform head;
+
         private void Awake()
         {
             _renderers = GetComponentsInChildren<Renderer>();

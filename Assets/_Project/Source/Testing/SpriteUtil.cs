@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO MOVE TO BOOTSTRAP
 public static class SpriteUtil
 {
     public static Sprite Load(string imageName)

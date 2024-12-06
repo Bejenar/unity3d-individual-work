@@ -42,20 +42,20 @@ namespace _Project.Source.Dungeon.Battle
         }
     }
     
-    public class RationalAfterMoraleHit : BaseInteraction, IAfterMoraleHit
-    {
-        public async UniTask AfterMoraleHit(FieldData fieldData, DungeonHero character)
-        {
-            if (character.fleeing) return;
-            
-            if (character.hero.Health < character.hero.Morale && character.hero.Health/character.hero.MaxHealth < 0.2f)
-            {
-                Debug.Log($"{character.name} has rationally fled!");
-                fieldData.OnHeroFled(character);
-                await character.Flee();
-            }
-        }
-    }
+    // public class RationalAfterMoraleHit : BaseInteraction, IAfterMoraleHit
+    // {
+    //     public async UniTask AfterMoraleHit(FieldData fieldData, DungeonHero character)
+    //     {
+    //         if (character.fleeing) return;
+    //         
+    //         if (character.hero.Health < character.hero.Morale && character.hero.Health/character.hero.MaxHealth < 0.2f)
+    //         {
+    //             Debug.Log($"{character.name} has rationally fled!");
+    //             fieldData.OnHeroFled(character);
+    //             await character.Flee();
+    //         }
+    //     }
+    // }
     
     public class RevengefulInteraction : BaseInteraction, IAfterMoraleHit
     {

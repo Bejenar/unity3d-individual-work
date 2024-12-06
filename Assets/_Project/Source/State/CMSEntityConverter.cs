@@ -83,6 +83,4 @@ namespace _Project.Source
             return colorString.ParseColor();
         }
     }
-
-    
 }

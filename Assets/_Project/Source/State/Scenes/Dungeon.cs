@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Data;
-using _Project.Data.Dungeons;
 using _Project.Data.Items;
 using _Project.Data.Monsters;
 using _Project.Data.Traits;
@@ -84,11 +83,13 @@ namespace _Project.Source.Scenes
                 selected[0].AddTrait<UnyieldingTrait>();
                 // selected.Add(HeroSummoning.CreateHero(CMS.Get<Barbarian>()));
                 selected.Add(HeroSummoning.CreateHero(CMS.Get<Healer>()));
+                selected.Add(HeroSummoning.CreateHero(CMS.Get<Barbarian>()));
                 selected.Add(HeroSummoning.CreateHero(CMS.Get<Mage>()));
                 
                 
                 foreach (var hero in selected)
                 {
+                    
                     hero.LevelUp();
                     hero.LevelUp();
                     hero.LevelUp();
@@ -101,6 +102,8 @@ namespace _Project.Source.Scenes
                 
                 G.state.selectedDungeon = CMS.Get<Level3>();
             }
+            
+            Instantiate(G.state.selectedDungeon.Get<TagLevelView>().dungeonPrefab);
 
             for (int i = 0; i < selected.Count; i++)
             {
@@ -197,7 +200,7 @@ namespace _Project.Source.Scenes
 
                 var gold = Mathf.CeilToInt(Mathf.Clamp(Mathf.Round(totalGold * 0.1f), 1, totalGold));
                 randomHero.AddGold(gold);
-                hud.ShowMoneyText(gold, randomHero.transform.position);
+                hud.ShowMoneyText(gold, randomHero.transform.position.Add(y: 1f));
                 await UniTask.WaitForSeconds(timeStep);
                 totalGold -= gold;
             }
@@ -220,12 +223,14 @@ namespace _Project.Source.Scenes
                 return;
             }
 
+            G.state.dungeonTier = Mathf.Max(G.state.dungeonTier, G.state.selectedDungeon.Get<TagTier>().tier + 1);
             phase = Phase.FINISHED;
         }
 
         private async UniTask FinishedPhase()
         {
             isRunning = false;
+            
             G.state.isJustFromDungeon = true;
 
             G.fader.FadeIn();
@@ -269,7 +274,6 @@ namespace _Project.Source.Scenes
             await UniTask.WaitForEndOfFrame();
             var summonMonster = Instantiate(monster.model.Get<TagMonsterPrefab>().prefab, parent);
             summonMonster.transform.localPosition = Random.insideUnitSphere.With(y: 0) * 0.1f;
-            summonMonster.transform.localRotation = Quaternion.Euler(0, 180, 0);
             summonMonster.Init(monster);
             return summonMonster;
         }

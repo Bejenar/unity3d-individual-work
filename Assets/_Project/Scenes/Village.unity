@@ -1970,7 +1970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791a2fd4d6974260bdbbd54e3abc1c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  villageHeroPrefab: {fileID: 4406839471139487457, guid: b5247baa38351924c956c8a5b96a558e, type: 3}
+  simulateDeath: 0
   villageHeroParent: {fileID: 2062939581}
   entrance: {fileID: 129815971}
   partyMeetup: {fileID: 129815971}
@@ -7411,88 +7411,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8569920339384576891, guid: 7b2065fbb1edf3542b922f6e6473b246, type: 3}
       insertIndex: -1
       addedObject: {fileID: 149485645}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4977595679878041756, guid: 7b2065fbb1edf3542b922f6e6473b246, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1549366450}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b2065fbb1edf3542b922f6e6473b246, type: 3}
 --- !u!224 &1549366447 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8569920339384576891, guid: 7b2065fbb1edf3542b922f6e6473b246, type: 3}
   m_PrefabInstance: {fileID: 1549366446}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1549366448 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4977595679878041756, guid: 7b2065fbb1edf3542b922f6e6473b246, type: 3}
-  m_PrefabInstance: {fileID: 1549366446}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1549366449 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3042388543815428905, guid: 7b2065fbb1edf3542b922f6e6473b246, type: 3}
-  m_PrefabInstance: {fileID: 1549366446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549366448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f47cb2b9564a458d4fb991a81d1e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1549366450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549366448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1549366449}
-        m_TargetAssemblyTypeName: _Project.Source.Village.UI.QuestPaper, Assembly-CSharp
-        m_MethodName: SelectQuest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1580412380
 PrefabInstance:
   m_ObjectHideFlags: 0

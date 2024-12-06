@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Data.Items;
@@ -6,6 +7,7 @@ using _Project.Source.Dungeon.Battle;
 using _Project.Source.Scenes;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FieldData
 {
@@ -59,12 +61,24 @@ public class FieldData
         return (actor is DungeonHero ? remainingHeroes : remainingMonsters).Where(c => c.IsParticipating())
             .ToList();
     }
+    
+    [Flags]
+    public enum AttackResult
+    {
+        None = 0 ,
+        Missed = 1 << 0,
+        Damage = 1 << 1,
+        Evaded = 1 << 2,
+        Blocked = 1 << 3,
+        Critical = 1 << 4
+    }
 
-    public static async UniTask<float> TryAttack(DungeonCharacter dcaster, DungeonCharacter dtarget)
+    public static async UniTask<(float, AttackResult)> TryAttack(DungeonCharacter dcaster, DungeonCharacter dtarget)
     {
         Unit caster = dcaster.unit;
         Unit target = dtarget.unit;
 
+        AttackResult result = AttackResult.Damage;
         // Check if the attack hits
         var r = Random.value;
         if (r > caster.HitChance - target.Evasion)
@@ -73,11 +87,15 @@ public class FieldData
 
             if (r > caster.HitChance)
             {
-                // miss by Evade 
+                result = AttackResult.Missed;
+            }
+            else
+            {
+                result = AttackResult.Evaded;
                 await dtarget.ChangeMorale(1);
             }
-
-            return 0; // Missed attack
+            
+            return (0, result);
         }
 
         // Calculate base damage
@@ -86,7 +104,7 @@ public class FieldData
         var modifiers = G.interactor.FindAll<IDamageModifier>();
         foreach (var modifier in modifiers)
         {
-            baseDamage = modifier.ModifyDamage(dcaster, dtarget, baseDamage);
+            (baseDamage, result) = modifier.ModifyDamage(dcaster, dtarget, baseDamage, result);
         }
 
         // Apply monster's damage reduction
@@ -94,11 +112,17 @@ public class FieldData
 
         // Apply monster's blockage (percentage reduction)
         baseDamage *= (1 - target.Blockage);
+        
+        if (baseDamage <= 0)
+        {
+            result = AttackResult.Blocked;
+            baseDamage = 0;
+        }
 
         await dcaster.ChangeMorale(1);
 
         // Ensure damage is not negative
-        return Mathf.Max(baseDamage, 0);
+        return (baseDamage, result);
     }
 
     public static float RandomRange(Vector2 range)
@@ -108,6 +132,7 @@ public class FieldData
 
     public void OnHeroFled(DungeonHero hero)
     {
+        hero.fleeing = true; // where to put this flag to reduce infinite loop?
         var remaining = remainingHeroes.Count(a => a.IsParticipating());
         var moraleChange = remaining switch
         {

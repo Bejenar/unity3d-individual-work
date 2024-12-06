@@ -44,6 +44,11 @@ namespace _Project.Source.Testing
             {
                 Time.timeScale = 4f;
             }
+            
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Time.timeScale = 10f;
+            }
 
             if (Input.GetKeyDown(KeyCode.R))
             {

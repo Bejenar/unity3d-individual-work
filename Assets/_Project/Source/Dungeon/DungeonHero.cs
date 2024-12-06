@@ -47,7 +47,9 @@ namespace _Project.Data.Items
                 if (r.material.name.Contains(StaticData.HairMatName))
                 {
                     var material = r.material;
-                    material.SetColor(StaticData.DarkColor, hero.hairColor);
+                    material.SetColor(StaticData.Tint, hero.hairColor);
+                    material.SetFloat(StaticData.TintValue, 1);
+                    material.SetColor(StaticData.DarkColor, hero.hairColor); // todo remove
                     material.SetColor(StaticData.LitColor, hero.hairColor);
                 }
             }
@@ -80,7 +82,6 @@ namespace _Project.Data.Items
         
         public async void DrawWeapon()
         {
-            Debug.Log("Draw weapon");
             animator.SetBool(DungeonCharacter.DrawWeaponHash, true);
 
             if (hasShield) return;
@@ -92,7 +93,6 @@ namespace _Project.Data.Items
 
         public async void SheatheWeapon()
         {
-            Debug.Log("Sheathe weapon");
             animator.SetBool(DungeonCharacter.DrawWeaponHash, false);
 
             if (hasShield) return;

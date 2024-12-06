@@ -84,20 +84,20 @@ namespace _Project.Source.Village.UI
             ShowPopupText($"0".Color(Color.black), position);
         }
         
-        public readonly Vector3 FloatingTextOffset = new Vector3(0, 90, 0);
+        public readonly Vector3 FloatingTextOffset = new Vector3(0, 220, 0);
 
         public void ShowPopupText(string text, Vector3 position, bool isCritical = false)
         {
             position = Camera.main.WorldToScreenPoint(position) + FloatingTextOffset;
             var popupText = Instantiate(popupTextPrefab, transform);
             popupText.transform.position = position;
-            popupText.SetText(text);
+            popupText.SetText(text, isCritical);
         }
 
         public Slider RegisterHealthBar(DungeonCharacter target, Vector3 offset)
         {
             var healthBar = Instantiate(healthBarPrefab, this.transform);
-            healthBar.transform.position = Camera.main.WorldToScreenPoint(target.transform.position) + offset;
+            healthBar.transform.position = Camera.main.WorldToScreenPoint(target.transform.position + offset);
 
             healthBar.maxValue = target.unit.MaxHealth;
             healthBar.value = target.unit.Health;

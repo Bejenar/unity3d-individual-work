@@ -116,7 +116,9 @@ namespace _Project.Source
                 if (r.material.name.Contains(StaticData.HairMatName))
                 {
                     var material = r.material;
-                    material.SetColor(StaticData.DarkColor, hero.hairColor);
+                    material.SetColor(StaticData.Tint, hero.hairColor);
+                    material.SetFloat(StaticData.TintValue, 1);
+                    material.SetColor(StaticData.DarkColor, hero.hairColor); // todo remove
                     material.SetColor(StaticData.LitColor, hero.hairColor);
                 }
             }

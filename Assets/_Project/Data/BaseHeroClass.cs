@@ -20,6 +20,7 @@ namespace _Project.Data
         public Tank()
         {
             Define<TagClass>().loc = "Tank";
+            Define<TagClass>().villagePrefab = GameResources.Prefabs.Village_Tank;
             Define<TagClass>().icon = SpriteUtil.Load("Art/Icons/knight");
             Define<TagClass>().line = 3;
             Define<TagHeroPrefab>().prefab = "Prefabs/Heroes/Tank".Load<DungeonHero>();
@@ -43,6 +44,7 @@ namespace _Project.Data
         public Barbarian()
         {
             Define<TagClass>().loc = "Barbarian";
+            Define<TagClass>().villagePrefab = GameResources.Prefabs.Village_Bers;
             Define<TagClass>().icon = SpriteUtil.Load("Art/Icons/wildling");
             Define<TagClass>().line = 3;
             Define<TagHeroPrefab>().prefab = "Prefabs/Heroes/Barbarian".Load<DungeonHero>();
@@ -55,6 +57,7 @@ namespace _Project.Data
         public Healer()
         {
             Define<TagClass>().loc = "Healer";
+            Define<TagClass>().villagePrefab = GameResources.Prefabs.Village_Healer;
             Define<TagClass>().icon = SpriteUtil.Load("Art/Icons/mender");
             Define<TagHeroPrefab>().prefab = "Prefabs/Heroes/Healer".Load<DungeonHero>();
             Define<TagHealAttack>().healEffect = "VFX/vfx_Healing".Load<AutoDestroyVFX>();
@@ -66,6 +69,7 @@ namespace _Project.Data
         public Mage()
         {
             Define<TagClass>().loc = "Mage";
+            Define<TagClass>().villagePrefab = GameResources.Prefabs.Village_Mage;
             Define<TagClass>().icon = SpriteUtil.Load("Art/Icons/savant");
             Define<TagHeroPrefab>().prefab = "Prefabs/Heroes/Mage".Load<DungeonHero>();
             Define<TagAoeAttack>().effectPerUnitHit = "VFX/vfx_VerticalBeam".Load<AutoDestroyVFX>();

@@ -12,7 +12,8 @@ namespace _Project.Source.Scenes
 {
     public class Main : MonoBehaviour
     {
-        public VillageHero villageHeroPrefab;
+        public bool simulateDeath = false;
+        
         public Transform villageHeroParent;
 
         public Transform entrance;
@@ -37,6 +38,8 @@ namespace _Project.Source.Scenes
                 await OnDungeonExit();
             }
 
+            if (simulateDeath)
+                G.state.heroes[0].WitnessDeath(FieldData.AddDeceasedHero(G.state.heroes[0]));
             foreach (var hero in G.state.heroes)
             {
                 villageHeroes.Add(SummonVillageHero(hero));
@@ -67,7 +70,7 @@ namespace _Project.Source.Scenes
         public VillageHero SummonVillageHero(BaseHeroClass model = null)
         {
             var hero = HeroSummoning.CreateHero(model);
-            var villageHero = Instantiate(villageHeroPrefab, villageHeroParent);
+            var villageHero = Instantiate(hero.model.Get<TagClass>().villagePrefab, villageHeroParent);
             villageHero.transform.localPosition = Random.insideUnitSphere.With(y: 0) * 0.1f;
             villageHero.Init(hero);
 
@@ -76,13 +79,14 @@ namespace _Project.Source.Scenes
 
         public VillageHero SummonVillageHero(Hero hero)
         {
+            hero.LastVillagePosition = Vector2.zero;
             Debug.Log(G.state.selectedHeroes.Contains(hero));
             var position = G.state.selectedHeroes.Contains(hero) ? dungeonEntry.transform.position :
                 hero.LastVillagePosition == Vector2.zero ? villageHeroParent.position :
                 new Vector3(hero.LastVillagePosition.x, 0, hero.LastVillagePosition.y);
 
 
-            var villageHero = Instantiate(villageHeroPrefab, villageHeroParent);
+            var villageHero = Instantiate(hero.model.Get<TagClass>().villagePrefab, villageHeroParent);
             villageHero.transform.position = position + Random.insideUnitSphere.With(y: 0) * 2.5f;
             villageHero.Init(hero);
 

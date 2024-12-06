@@ -24,6 +24,6 @@ namespace _Project.Source
         
         public bool canSummonToday = true;
         public bool isFirstSummon = true;
-        public int gold = 100;
+        public int gold = 0;
     }
 }

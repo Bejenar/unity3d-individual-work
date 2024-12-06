@@ -7,28 +7,28 @@ namespace _Project.Source.Dungeon.Battle
 {
     public interface IDamageModifier
     {
-        float ModifyDamage(DungeonCharacter caster, DungeonCharacter target, float damage);
+        (float, FieldData.AttackResult) ModifyDamage(DungeonCharacter caster, DungeonCharacter target, float damage, FieldData.AttackResult res);
     }
 
     public class CriticalDamageModifier : BaseInteraction, IDamageModifier
     {
-        public float ModifyDamage(DungeonCharacter caster, DungeonCharacter target, float damage)
+        public (float, FieldData.AttackResult) ModifyDamage(DungeonCharacter caster, DungeonCharacter target, float damage, FieldData.AttackResult res)
         {
             // TODO this interaction should not know about TagCurseNoLuck? 
             // maybe we should have ICritScaleModifier
             if (caster.unit.Traits.Is<TagCurseNoLuck>(out _))
             {
-                return damage;
+                return (damage, res);
             }
 
             if (Random.value < caster.unit.CritChance)
             {
                 caster.ChangeMorale(1).Forget(); //TODO forget?
 
-                return damage * 2;
+                return (damage * 2, res | FieldData.AttackResult.Critical);
             }
 
-            return damage;
+            return (damage, res);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace _Project.Data.Items
     {
         public Slider hpSlider;
 
-        public Vector3 offset = new Vector3(0, 1.5f, 0);
+        public Vector3 offset = Vector3.zero;
         
         public Monster monster
         {
@@ -32,6 +32,12 @@ namespace _Project.Data.Items
         {
             Destroy(hpSlider.gameObject);
             return base.Die();
+        }
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(transform.position + offset, 0.1f);
         }
     }
 }

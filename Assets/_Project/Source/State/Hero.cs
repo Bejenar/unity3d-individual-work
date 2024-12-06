@@ -124,6 +124,9 @@ namespace _Project.Source
             DamageReduction += buff.damageReduction;
             HealthRegeneration += buff.healthRegen;
             Blockage += buff.blockage;
+            MaxHealth += buff.health;
+            Health += buff.health;
+            DamageRange = new Vector2(DamageRange.x + buff.damage.x, DamageRange.y + buff.damage.y);
         }
 
         public void OverrideStats(TagStatsOverrideBuff overrideBuff)

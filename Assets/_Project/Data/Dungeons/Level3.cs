@@ -1,8 +1,6 @@
 using _Project.Data.Items;
 using _Project.Data.Monsters;
 
-namespace _Project.Data.Dungeons
-{
     public class Level3 : CMSEntity
     {
         public Level3()
@@ -13,7 +11,7 @@ namespace _Project.Data.Dungeons
             Define<TagListChallenges>().all.Add(E.Id<Wave3_4>());
             Define<TagListChallenges>().all.Add(E.Id<Wave3_1Boss>());
             Define<TagTier>().tier = 3;
-            Define<TagLevelView>();
+            Define<TagLevelView>().dungeonPrefab = GameResources.Prefabs.Dungeon.DungeonPrefab__3_;
         }
     }
 
@@ -66,4 +64,3 @@ namespace _Project.Data.Dungeons
             Define<TagMobGroup>().mobGroup.Add(E.Id<Brute>());
         }
     }
-}

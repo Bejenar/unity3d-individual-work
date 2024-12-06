@@ -13,7 +13,6 @@ namespace _Project.Source
 
         public List<StateComponent> state = new();
 
-        // TODO this needs to be generic and in bootstrap library
         public T GetOrAdd<T>() where T : StateComponent, new()
         {
             var component = state.OfType<T>().FirstOrDefault();

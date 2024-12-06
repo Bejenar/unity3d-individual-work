@@ -16,6 +16,7 @@ public class TagMobGroup : EntityComponentDefinition
 public class TagLevelView : EntityComponentDefinition
 {
     public Sprite sprite;
+    public GameObject dungeonPrefab;
 }
 
 public class Level1 : CMSEntity
@@ -28,7 +29,7 @@ public class Level1 : CMSEntity
         Define<TagListChallenges>().all.Add(E.Id<Wave4>());
         Define<TagListChallenges>().all.Add(E.Id<Wave1Boss>());
         Define<TagTier>().tier = 1;
-        Define<TagLevelView>();
+        Define<TagLevelView>().dungeonPrefab = GameResources.Prefabs.Dungeon.DungeonPrefab__1_;
     }
 }
 
